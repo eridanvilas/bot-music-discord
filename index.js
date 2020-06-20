@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Ytdl =  require('ytdl-core');
+const Ytdl = require('ytdl-core');
 
 const token = 'NzIzNTk2ODU5OTgxMDM3NzAw.Xuz_LA.07Mj0aJ1OpEZV0titZ_ubZLdUB4';
 var realy = false;
@@ -11,49 +11,38 @@ app.on('ready', () => {
 
 var connection;
 
-app.on('message', async(msg) =>{
-  // ;join
-  if(msg.content == ';join'){
-     if(msg.member.voice.channel){
-        connection = await msg.member.voice.channel.join();
-        realy = true;
-     }
-     else{
-        msg.channel.send('Pai precisa estar em um canal de voz');
-     }
-
-  }
+app.on('message', async (msg) => {
   // ;leave
-  else if(msg.content == ';leave'){
-    if(msg.member.voice.channel){
+  if (msg.content == ';leave') {
+    if (msg.member.voice.channel) {
       msg.member.voice.channel.leave();
       realy = false;
     }
-    else{
-       msg.channel.send('Pai precisa estar em um canal de voz');
+    else {
+      msg.channel.send('Pai precisa estar em um canal de voz');
     }
   }
   // ;play [link]
-  else if(msg.content.startsWith(';play ')){
-    if(msg.member.voice.channel){
+  else if (msg.content.startsWith(';play ')) {
+    if (msg.member.voice.channel) {
       connection = await msg.member.voice.channel.join();
       realy = true;
     }
-    else{
+    else {
       msg.channel.send('Pai precisa estar em um canal de voz');
     }
-    if(realy){
+    if (realy) {
       var linkPlay = msg.content.replace(';play ', '');
-      if(Ytdl.validateURL(linkPlay)){
+      if (Ytdl.validateURL(linkPlay)) {
         // msg.member.voice.channel.connection.play(Ytdl(linkPlay));
         console.log("Tocando... " + linkPlay);
-        try{
+        try {
           connection.play(Ytdl(linkPlay));
         }
-        catch(error){
+        catch (error) {
           console.log(error);
         }
-      }else{
+      } else {
         msg.channel.send('Pai não encontrou essa musica...');
       }
     }
