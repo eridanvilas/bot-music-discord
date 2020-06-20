@@ -46,7 +46,13 @@ app.on('message', async(msg) =>{
       var linkPlay = msg.content.replace(';play ', '');
       if(Ytdl.validateURL(linkPlay)){
         // msg.member.voice.channel.connection.play(Ytdl(linkPlay));
-        connection.play(stream, play);
+        console.log("Tocando... " + linkPlay);
+        try{
+          connection.play(Ytdl(linkPlay));
+        }
+        catch(error){
+          console.log(error);
+        }
       }else{
         msg.channel.send('Pai não encontrou essa musica...');
       }

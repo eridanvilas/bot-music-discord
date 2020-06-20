@@ -19,8 +19,8 @@
   "dependencies": {
     "discord.js": "^12.2.0",
     "ffmpeg": "0.0.4",
-    "opusscript": "0.0.7",
-    "simple-youtube-api": "^5.2.1",
+    "init": "^0.1.2",
+    "node-opus": "^0.3.3",
     "ytdl-core": "^2.1.7"
   }
 }
