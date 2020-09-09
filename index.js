@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const Ytdl = require('ytdl-core');
 
-const token = 'NzIzNTk2ODU5OTgxMDM3NzAw.Xuz_LA.07Mj0aJ1OpEZV0titZ_ubZLdUB4';
+const token = require('./credentials/authentication.json').discordjs;
 var realy = false;
 const app = new Discord.Client();
 
@@ -32,7 +32,7 @@ app.on('message', async (msg) => {
       msg.channel.send('Pai precisa estar em um canal de voz');
     }
     if (realy) {
-      var linkPlay = msg.content.replace(';play ', '');
+      let linkPlay = msg.content.replace(';play ', '');
       if (Ytdl.validateURL(linkPlay)) {
         // msg.member.voice.channel.connection.play(Ytdl(linkPlay));
         console.log("Tocando... " + linkPlay);
